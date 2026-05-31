@@ -202,6 +202,9 @@ section {
     position: sticky;
     top: 0;
     z-index: 100;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
     background: rgba(250,246,239,.96);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--color-border);
@@ -505,7 +508,7 @@ section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 0;
 }
 
 .equipo-card {
@@ -1285,6 +1288,9 @@ section {
     background: var(--color-bg-dark);
     padding-block: 4rem 2rem;
     color: rgba(255,255,255,.7);
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .footer-grid {
@@ -1461,6 +1467,18 @@ section {
         border-radius: var(--radius-sm);
         text-align: center;
     }
+
+    /* Carta servicios: apilar contenido en tablet estrecha */
+    .carta-item {
+        flex-wrap: wrap;
+    }
+    .carta-precios {
+        align-items: flex-start;
+        flex-basis: 100%;
+    }
+
+    /* Equipo card: reducir foto en tablet para que el texto tenga más espacio */
+    .equipo-card { gap: 1.25rem; }
 }
 
 @media (max-width: 576px) {
@@ -1561,6 +1579,28 @@ section {
         max-width: 100%;
         padding: 2rem 1.25rem 2.5rem;
     }
+
+    /* Botones de plan: ancho completo para zona de toque cómoda */
+    .plan-card .btn-cta { width: 100%; }
+
+    /* Prevenir overflow en hijos flex/grid con contenido largo */
+    .dato-card > div,
+    .equipo-info,
+    .fi-item > p { min-width: 0; }
+
+    /* Diagrama: evitar que el texto largo desborde en pantallas estrechas */
+    .diagrama-resultado { word-break: break-word; }
+
+    /* Carta servicios: asegurar que el texto largo de precios no desborde */
+    .carta-precios { align-items: flex-start; max-width: 100%; }
+    .carta-desc-transforma,
+    .carta-desc-pertenece { word-break: break-word; }
+
+    /* Garantía: icono centrado verticalmente en pantallas muy estrechas */
+    .garantia-icon { font-size: 2.25rem; }
+
+    /* Fundadoras fi-item: texto no debe crear scroll horizontal */
+    .fi-item { word-break: break-word; }
 }
 
 /* --------------------------------------------------------------------------
@@ -1579,6 +1619,12 @@ section {
 
     .faq-preg { font-size: .92rem; padding: 1rem 1.25rem; }
     .faq-resp-inner { padding: 0 1.25rem 1rem; font-size: .88rem; }
+
+    /* Samsung Galaxy S23 (360px) y dispositivos muy estrechos */
+    .equipo-foto { width: 80px; height: 80px; }
+    .equipo-card { padding: 1.25rem; gap: 1rem; }
+    .pilar-card { padding: 1.25rem; }
+    .pq-col { padding: 1rem; }
 }
 
 /* --------------------------------------------------------------------------
