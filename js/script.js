@@ -2,9 +2,8 @@
  * ÍNTEGRAS — Lógica de Interactividad (JS v3)
  */
 
-// La API Key se carga desde js/config.js (excluido de git).
-// Si falta ese archivo, saveLead avisa en consola y solo guarda en localStorage.
-const GHL_API_KEY = window.GHL_API_KEY || '';
+// Los leads se envían a /api/submit-lead (función serverless en Vercel).
+// La API Key de GoHighLevel vive en las Variables de Entorno de Vercel, nunca en este archivo.
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -223,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 5. ENVÍO A GOHIGHLEVEL + BACKUP EN LOCALSTORAGE
+    // 5. ENVÍO A /api/submit-lead (función serverless Vercel) + BACKUP LOCAL
     // =========================================================================
 
     async function saveLead(fields) {
@@ -233,64 +232,19 @@ document.addEventListener('DOMContentLoaded', () => {
         leads.push(lead);
         localStorage.setItem('integras_leads', JSON.stringify(leads));
 
-        if (!GHL_API_KEY || GHL_API_KEY.startsWith('TU_API')) {
-            console.warn('ÍNTEGRAS CRM: configura GHL_API_KEY en script.js para enviar leads al CRM.');
-            return;
-        }
-
-        const parts = fields.nombre.trim().split(' ');
-        const firstName = parts[0] || '';
-        const lastName = parts.slice(1).join(' ') || '';
-
-        const tags = ['integras-lead'];
-        if (fields.plan) tags.push('plan-' + fields.plan);
-        if (fields.origen) tags.push(fields.origen === 'Modal' ? 'modal' : 'formulario-contacto');
-
         try {
-            const res = await fetch('https://rest.gohighlevel.com/v1/contacts/', {
+            const res = await fetch('/api/submit-lead', {
                 method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer ' + GHL_API_KEY,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: fields.email,
-                    firstName,
-                    lastName,
-                    name: fields.nombre,
-                    source: 'Landing Page ÍNTEGRAS',
-                    tags
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(fields)
             });
 
             if (!res.ok) {
-                console.error('GHL API error al crear contacto:', res.status, await res.text());
-                return;
+                const err = await res.json().catch(() => ({}));
+                console.error('ÍNTEGRAS CRM: error al enviar lead', res.status, err);
             }
-
-            const data = await res.json();
-            const contactId = data.contact?.id;
-            if (!contactId) return;
-
-            const noteLines = [
-                fields.plan ? 'Plan seleccionado: ' + fields.plan : null,
-                'Motivo de contacto: ' + fields.reason,
-                fields.medical ? 'Diagnóstico / Limitaciones: ' + fields.medical : null,
-                'Origen: ' + fields.origen,
-                'Fecha: ' + new Date().toLocaleString('es-ES')
-            ].filter(Boolean);
-
-            await fetch('https://rest.gohighlevel.com/v1/contacts/' + contactId + '/notes/', {
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer ' + GHL_API_KEY,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ body: noteLines.join('\n') })
-            });
-
         } catch (err) {
-            console.error('ÍNTEGRAS CRM: error de red al enviar al CRM:', err);
+            console.error('ÍNTEGRAS CRM: error de red', err);
         }
     }
 
