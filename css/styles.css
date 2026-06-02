@@ -341,7 +341,8 @@ section {
 
 .voc-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+    align-items: stretch;
     gap: 1.25rem;
     margin-bottom: 2.5rem;
 }
@@ -1531,6 +1532,23 @@ section {
     .equipo-card { gap: 1.25rem; }
 }
 
+@media (max-width: 768px) {
+    /* VOC grid: columna única en móvil */
+    .voc-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Opciones de plan: apiladas en columna, ancho completo, fácil de pulsar */
+    .plan-radio-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .plan-radio-option {
+        width: 100%;
+        min-height: 48px;
+    }
+}
+
 @media (max-width: 576px) {
     :root { --section-v: 3rem; --gap: 1rem; }
 
@@ -1565,9 +1583,6 @@ section {
     .hero { padding-block: 3rem 2rem; }
     .hero-sub { font-size: .95rem; max-width: 100%; }
     .urgency-pill { font-size: .75rem; }
-
-    /* VOC grid: forzar 1 columna (auto-fit puede vacilar en ~320px) */
-    .voc-grid { grid-template-columns: 1fr; }
 
     /* Selector de período: grilla 2×2 en vez de flex-wrap para alineación perfecta */
     .period-selector {
