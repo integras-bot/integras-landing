@@ -41,7 +41,12 @@ module.exports = async function handler(req, res) {
                 lastName,
                 name: nombre,
                 source: 'Landing Page ÍNTEGRAS',
-                tags
+                tags,
+                customFields: [
+                    { key: 'motivo_contacto',     field_value: reason        },
+                    { key: 'plan_seleccionado',   field_value: plan || ''    },
+                    { key: 'limitaciones_fisicas', field_value: medical || '' }
+                ]
             })
         });
 
