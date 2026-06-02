@@ -2,6 +2,10 @@
  * ÍNTEGRAS — Lógica de Interactividad (JS v3)
  */
 
+// La API Key se carga desde js/config.js (excluido de git).
+// Si falta ese archivo, saveLead avisa en consola y solo guarda en localStorage.
+const GHL_API_KEY = window.GHL_API_KEY || '';
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // =========================================================================
@@ -10,20 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const pricingData = {
         mensual: {
-            pertenece: { price: '45', suffix: '€/mes', total: '45€/mes',           saving: '',                              display: '45€/mes', nota: '' },
-            transforma: { price: '90', suffix: '€/mes', total: '90€/mes',          saving: '',                              display: '90€/mes', nota: '' }
+            pertenece: { price: '45', suffix: '€/mes', total: '45€/mes', saving: '', display: '45€/mes', nota: '' },
+            transforma: { price: '90', suffix: '€/mes', total: '90€/mes', saving: '', display: '90€/mes', nota: '' }
         },
         trimestral: {
-            pertenece: { price: '38', suffix: '€/mes', total: '114€ cada 3 meses', saving: 'Ahorras 21€',                  display: '38€/mes', nota: '' },
-            transforma: { price: '76', suffix: '€/mes', total: '228€ cada 3 meses', saving: 'Ahorras 36€',                 display: '76€/mes', nota: '' }
+            pertenece: { price: '38', suffix: '€/mes', total: '114€ cada 3 meses', saving: 'Ahorras 21€', display: '38€/mes', nota: '' },
+            transforma: { price: '76', suffix: '€/mes', total: '228€ cada 3 meses', saving: 'Ahorras 36€', display: '76€/mes', nota: '' }
         },
         semestral: {
-            pertenece: { price: '36', suffix: '€/mes', total: '216€ cada 6 meses', saving: 'Ahorras 54€',                  display: '36€/mes', nota: '' },
-            transforma: { price: '72', suffix: '€/mes', total: '432€ cada 6 meses', saving: 'Ahorras 108€',                display: '72€/mes', nota: '' }
+            pertenece: { price: '36', suffix: '€/mes', total: '216€ cada 6 meses', saving: 'Ahorras 54€', display: '36€/mes', nota: '' },
+            transforma: { price: '72', suffix: '€/mes', total: '432€ cada 6 meses', saving: 'Ahorras 108€', display: '72€/mes', nota: '' }
         },
         anual: {
-            pertenece: { price: '33', suffix: '€/mes', total: '396€ al año',       saving: 'Pagas 10 meses, disfrutas 12',      display: '33€/mes', nota: 'Precio fijo para siempre como fundadora' },
-            transforma: { price: '67', suffix: '€/mes', total: '804€ al año',      saving: 'Pagas 10 meses, disfrutas 12 ⭐',   display: '67€/mes', nota: 'Precio fijo para siempre como fundadora' }
+            pertenece: { price: '33', suffix: '€/mes', total: '396€ al año', saving: 'Pagas 10 meses, disfrutas 12', display: '33€/mes', nota: 'Precio fijo para siempre como fundadora' },
+            transforma: { price: '67', suffix: '€/mes', total: '804€ al año', saving: 'Pagas 10 meses, disfrutas 12 ⭐', display: '67€/mes', nota: 'Precio fijo para siempre como fundadora' }
         }
     };
 
@@ -42,30 +46,30 @@ document.addEventListener('DOMContentLoaded', () => {
             ['pertenece', 'transforma'].forEach(plan => {
                 const d = data[plan];
 
-                const priceEl   = document.getElementById('price-' + plan);
-                const suffixEl  = document.getElementById('suffix-' + plan);
-                const totalEl   = document.getElementById('total-' + plan);
-                const savingEl  = document.getElementById('saving-' + plan);
+                const priceEl = document.getElementById('price-' + plan);
+                const suffixEl = document.getElementById('suffix-' + plan);
+                const totalEl = document.getElementById('total-' + plan);
+                const savingEl = document.getElementById('saving-' + plan);
                 const displayEl = document.getElementById('pdisplay-' + plan);
-                const notaEl    = document.getElementById('nota-' + plan);
+                const notaEl = document.getElementById('nota-' + plan);
 
-                if (priceEl)   priceEl.textContent  = d.price;
-                if (suffixEl)  suffixEl.textContent  = d.suffix;
-                if (totalEl)   totalEl.textContent   = d.total;
+                if (priceEl) priceEl.textContent = d.price;
+                if (suffixEl) suffixEl.textContent = d.suffix;
+                if (totalEl) totalEl.textContent = d.total;
                 if (displayEl) displayEl.textContent = d.display;
-                if (notaEl)    notaEl.textContent    = d.nota;
+                if (notaEl) notaEl.textContent = d.nota;
 
                 if (savingEl) {
                     if (d.saving) {
-                        savingEl.textContent    = d.saving;
-                        savingEl.style.display  = 'inline-block';
+                        savingEl.textContent = d.saving;
+                        savingEl.style.display = 'inline-block';
                     } else {
-                        savingEl.style.display  = 'none';
+                        savingEl.style.display = 'none';
                     }
                 }
             });
 
-            planesGrid.style.opacity   = '1';
+            planesGrid.style.opacity = '1';
             planesGrid.style.transform = 'scale(1)';
         }, 150);
     }
@@ -87,12 +91,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
 
     const modalOverlay = document.getElementById('modal');
-    const modalClose   = document.getElementById('modal-close');
+    const modalClose = document.getElementById('modal-close');
     const modalFormWrap = document.getElementById('modal-form-wrap');
     const modalSuccess = document.getElementById('modal-success');
-    const modalBack    = document.getElementById('modal-back');
-    const modalForm    = document.getElementById('modal-form');
-    const openBtns     = document.querySelectorAll('.js-open-modal');
+    const modalBack = document.getElementById('modal-back');
+    const modalForm = document.getElementById('modal-form');
+    const openBtns = document.querySelectorAll('.js-open-modal');
 
     function openModal() {
         if (!modalOverlay) return;
@@ -113,19 +117,22 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             if (modalForm) modalForm.reset();
             if (modalFormWrap) modalFormWrap.style.display = 'block';
-            if (modalSuccess)  modalSuccess.style.display  = 'none';
+            if (modalSuccess) modalSuccess.style.display = 'none';
         }, 350);
     }
+
+    let selectedPlan = null;
 
     openBtns.forEach(btn => {
         btn.addEventListener('click', e => {
             e.preventDefault();
+            selectedPlan = btn.dataset.plan || null;
             openModal();
         });
     });
 
     if (modalClose) modalClose.addEventListener('click', closeModal);
-    if (modalBack)  modalBack.addEventListener('click', closeModal);
+    if (modalBack) modalBack.addEventListener('click', closeModal);
 
     if (modalOverlay) {
         modalOverlay.addEventListener('click', e => {
@@ -145,12 +152,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
 
     if (modalForm) {
-        modalForm.addEventListener('submit', e => {
+        modalForm.addEventListener('submit', async e => {
             e.preventDefault();
 
-            const nombre  = document.getElementById('m-name').value.trim();
-            const email   = document.getElementById('m-email').value.trim();
-            const reason  = document.getElementById('m-reason').value.trim();
+            const nombre = document.getElementById('m-name').value.trim();
+            const email = document.getElementById('m-email').value.trim();
+            const reason = document.getElementById('m-reason').value.trim();
             const medical = document.getElementById('m-medical').value.trim();
 
             if (!nombre || !email || !reason) {
@@ -159,21 +166,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const submitBtn = modalForm.querySelector('button[type="submit"]');
-            const origText  = submitBtn.textContent;
-            submitBtn.disabled    = true;
+            const origText = submitBtn.textContent;
+            submitBtn.disabled = true;
             submitBtn.textContent = 'Procesando tu plaza…';
 
-            setTimeout(() => {
-                saveLead({ nombre, email, reason, medical, origen: 'Modal' });
+            await saveLead({ nombre, email, reason, medical, plan: selectedPlan, origen: 'Modal' });
 
-                if (modalFormWrap) modalFormWrap.style.display = 'none';
-                if (modalSuccess)  modalSuccess.style.display  = 'block';
+            if (modalFormWrap) modalFormWrap.style.display = 'none';
+            if (modalSuccess) modalSuccess.style.display = 'block';
 
-                submitBtn.disabled    = false;
-                submitBtn.textContent = origText;
+            submitBtn.disabled = false;
+            submitBtn.textContent = origText;
 
-                decrementPlazas();
-            }, 1200);
+            decrementPlazas();
         });
     }
 
@@ -182,16 +187,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. ENVÍO FORMULARIO DE CONTACTO
     // =========================================================================
 
-    const contactForm    = document.getElementById('contact-form');
+    const contactForm = document.getElementById('contact-form');
     const contactSuccess = document.getElementById('contact-success');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', e => {
+        contactForm.addEventListener('submit', async e => {
             e.preventDefault();
 
-            const nombre  = document.getElementById('c-name').value.trim();
-            const email   = document.getElementById('c-email').value.trim();
-            const reason  = document.getElementById('c-reason').value.trim();
+            const nombre = document.getElementById('c-name').value.trim();
+            const email = document.getElementById('c-email').value.trim();
+            const reason = document.getElementById('c-reason').value.trim();
             const medical = document.getElementById('c-medical').value.trim();
 
             if (!nombre || !email || !reason) {
@@ -200,38 +205,93 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const origText  = submitBtn.textContent;
-            submitBtn.disabled    = true;
+            const origText = submitBtn.textContent;
+            submitBtn.disabled = true;
             submitBtn.textContent = 'Procesando tu plaza…';
 
-            setTimeout(() => {
-                saveLead({ nombre, email, reason, medical, origen: 'Formulario Contacto' });
+            await saveLead({ nombre, email, reason, medical, origen: 'Formulario Contacto' });
 
-                contactForm.style.display = 'none';
-                if (contactSuccess) contactSuccess.style.display = 'block';
+            contactForm.style.display = 'none';
+            if (contactSuccess) contactSuccess.style.display = 'block';
 
-                submitBtn.disabled    = false;
-                submitBtn.textContent = origText;
+            submitBtn.disabled = false;
+            submitBtn.textContent = origText;
 
-                decrementPlazas();
-            }, 1200);
+            decrementPlazas();
         });
     }
 
 
     // =========================================================================
-    // 5. PERSISTENCIA DE LEADS (localStorage — solo desarrollo)
+    // 5. ENVÍO A GOHIGHLEVEL + BACKUP EN LOCALSTORAGE
     // =========================================================================
 
-    function saveLead(fields) {
-        const lead = {
-            id: 'lead_' + Date.now(),
-            fechaRegistro: new Date().toISOString(),
-            ...fields
-        };
+    async function saveLead(fields) {
+        // Backup local siempre, como seguro ante fallos de red
+        const lead = { id: 'lead_' + Date.now(), fechaRegistro: new Date().toISOString(), ...fields };
         const leads = JSON.parse(localStorage.getItem('integras_leads') || '[]');
         leads.push(lead);
         localStorage.setItem('integras_leads', JSON.stringify(leads));
+
+        if (!GHL_API_KEY || GHL_API_KEY.startsWith('TU_API')) {
+            console.warn('ÍNTEGRAS CRM: configura GHL_API_KEY en script.js para enviar leads al CRM.');
+            return;
+        }
+
+        const parts = fields.nombre.trim().split(' ');
+        const firstName = parts[0] || '';
+        const lastName = parts.slice(1).join(' ') || '';
+
+        const tags = ['integras-lead'];
+        if (fields.plan) tags.push('plan-' + fields.plan);
+        if (fields.origen) tags.push(fields.origen === 'Modal' ? 'modal' : 'formulario-contacto');
+
+        try {
+            const res = await fetch('https://rest.gohighlevel.com/v1/contacts/', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + GHL_API_KEY,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: fields.email,
+                    firstName,
+                    lastName,
+                    name: fields.nombre,
+                    source: 'Landing Page ÍNTEGRAS',
+                    tags
+                })
+            });
+
+            if (!res.ok) {
+                console.error('GHL API error al crear contacto:', res.status, await res.text());
+                return;
+            }
+
+            const data = await res.json();
+            const contactId = data.contact?.id;
+            if (!contactId) return;
+
+            const noteLines = [
+                fields.plan ? 'Plan seleccionado: ' + fields.plan : null,
+                'Motivo de contacto: ' + fields.reason,
+                fields.medical ? 'Diagnóstico / Limitaciones: ' + fields.medical : null,
+                'Origen: ' + fields.origen,
+                'Fecha: ' + new Date().toLocaleString('es-ES')
+            ].filter(Boolean);
+
+            await fetch('https://rest.gohighlevel.com/v1/contacts/' + contactId + '/notes/', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + GHL_API_KEY,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ body: noteLines.join('\n') })
+            });
+
+        } catch (err) {
+            console.error('ÍNTEGRAS CRM: error de red al enviar al CRM:', err);
+        }
     }
 
 
@@ -264,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const faqItems = document.querySelectorAll('.faq-item');
 
     faqItems.forEach(item => {
-        const btn  = item.querySelector('.faq-preg');
+        const btn = item.querySelector('.faq-preg');
         const resp = item.querySelector('.faq-resp');
         if (!btn || !resp) return;
 
