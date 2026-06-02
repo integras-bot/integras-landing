@@ -9,8 +9,10 @@ module.exports = async function handler(req, res) {
         return res.status(400).json({ error: 'Campos obligatorios incompletos' });
     }
 
-    const GHL_API_KEY = process.env.GHL_API_KEY;
-    if (!GHL_API_KEY) {
+    const GHL_API_KEY     = process.env.GHL_API_KEY;
+    const GHL_LOCATION_ID = process.env.GHL_LOCATION_ID;
+
+    if (!GHL_API_KEY || !GHL_LOCATION_ID) {
         return res.status(500).json({ error: 'CRM no configurado en el servidor' });
     }
 
@@ -22,14 +24,18 @@ module.exports = async function handler(req, res) {
     if (plan)   tags.push('plan-' + plan);
     if (origen) tags.push(origen === 'Modal' ? 'modal' : 'formulario-contacto');
 
+    const ghlHeaders = {
+        'Authorization': 'Bearer ' + GHL_API_KEY,
+        'Version': '2021-07-28',
+        'Content-Type': 'application/json'
+    };
+
     try {
-        const contactRes = await fetch('https://rest.gohighlevel.com/v1/contacts/', {
+        const contactRes = await fetch('https://services.leadconnectorhq.com/contacts/', {
             method: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + GHL_API_KEY,
-                'Content-Type': 'application/json'
-            },
+            headers: ghlHeaders,
             body: JSON.stringify({
+                locationId: GHL_LOCATION_ID,
                 email,
                 firstName,
                 lastName,
@@ -56,13 +62,13 @@ module.exports = async function handler(req, res) {
                 'Fecha: ' + new Date().toLocaleString('es-ES')
             ].filter(Boolean);
 
-            await fetch('https://rest.gohighlevel.com/v1/contacts/' + contactId + '/notes/', {
+            await fetch('https://services.leadconnectorhq.com/contacts/' + contactId + '/notes', {
                 method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer ' + GHL_API_KEY,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ body: noteLines.join('\n') })
+                headers: ghlHeaders,
+                body: JSON.stringify({
+                    body: noteLines.join('\n'),
+                    userId: ''
+                })
             });
         }
 
@@ -71,4 +77,4 @@ module.exports = async function handler(req, res) {
     } catch (err) {
         return res.status(500).json({ error: 'Error de red', detail: err.message });
     }
-}
+};
