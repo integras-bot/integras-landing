@@ -122,13 +122,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let selectedPlan = null;
 
+    function applyPlanToRadios(plan) {
+        const radios = modalForm ? modalForm.querySelectorAll('input[name="m-plan"]') : [];
+        radios.forEach(r => {
+            r.checked = (r.value === (plan || ''));
+        });
+        highlightSelectedRadio();
+    }
+
+    function highlightSelectedRadio() {
+        if (!modalForm) return;
+        modalForm.querySelectorAll('.plan-radio-option').forEach(opt => {
+            opt.classList.toggle('selected', opt.querySelector('input').checked);
+        });
+    }
+
     openBtns.forEach(btn => {
         btn.addEventListener('click', e => {
             e.preventDefault();
             selectedPlan = btn.dataset.plan || null;
             openModal();
+            setTimeout(() => applyPlanToRadios(selectedPlan), 50);
         });
     });
+
+    if (modalForm) {
+        modalForm.querySelectorAll('input[name="m-plan"]').forEach(r => {
+            r.addEventListener('change', highlightSelectedRadio);
+        });
+    }
 
     if (modalClose) modalClose.addEventListener('click', closeModal);
     if (modalBack) modalBack.addEventListener('click', closeModal);
@@ -154,10 +176,12 @@ document.addEventListener('DOMContentLoaded', () => {
         modalForm.addEventListener('submit', async e => {
             e.preventDefault();
 
-            const nombre = document.getElementById('m-name').value.trim();
-            const email = document.getElementById('m-email').value.trim();
-            const reason = document.getElementById('m-reason').value.trim();
+            const nombre  = document.getElementById('m-name').value.trim();
+            const email   = document.getElementById('m-email').value.trim();
+            const reason  = document.getElementById('m-reason').value.trim();
             const medical = document.getElementById('m-medical').value.trim();
+            const planRadio = modalForm.querySelector('input[name="m-plan"]:checked');
+            const plan    = planRadio ? planRadio.value || null : selectedPlan;
 
             if (!nombre || !email || !reason) {
                 alert('Por favor, completa los campos obligatorios (nombre, email y motivo).');
@@ -169,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
             submitBtn.textContent = 'Procesando tu plaza…';
 
-            await saveLead({ nombre, email, reason, medical, plan: selectedPlan, origen: 'Modal' });
+            await saveLead({ nombre, email, reason, medical, plan, origen: 'Modal' });
 
             if (modalFormWrap) modalFormWrap.style.display = 'none';
             if (modalSuccess) modalSuccess.style.display = 'block';
