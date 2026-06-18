@@ -8,7 +8,58 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // =========================================================================
-    // 1. MODAL
+    // 1. SELECTOR DE PERIODICIDAD
+    // =========================================================================
+
+    const pricingData = {
+        mensual:    { fundadora: { total: '24,99', suf: '€/mes',          equiv: null,          ahorro: null           }, definitivo: { ref: '54,99€/mes'            } },
+        trimestral: { fundadora: { total: '63,22', suf: '€ / trimestre',  equiv: '21,07 €/mes', ahorro: 'Ahorras 11,75€' }, definitivo: { ref: '138,95€ / trimestre'  } },
+        semestral:  { fundadora: { total: '119,95', suf: '€ / semestre',  equiv: '19,99 €/mes', ahorro: 'Ahorras 29,99€' }, definitivo: { ref: '263,95€ / semestre'   } },
+        anual:      { fundadora: { total: '221,91', suf: '€ / año',       equiv: '18,49 €/mes', ahorro: 'Ahorras 77,97€' }, definitivo: { ref: '487,91€ / año'         } }
+    };
+
+    const periodTabs = document.querySelectorAll('.period-tab');
+    const pfTotal    = document.getElementById('pf-total');
+    const pfSuf      = document.getElementById('pf-suf');
+    const pfEquiv    = document.getElementById('pf-equiv');
+    const pfAhorro   = document.getElementById('pf-ahorro');
+    const pdRef      = document.getElementById('pd-ref');
+
+    function updatePeriod(period) {
+        const d = pricingData[period];
+        if (!d) return;
+
+        if (pfTotal) pfTotal.textContent = d.fundadora.total;
+        if (pfSuf)   pfSuf.textContent   = d.fundadora.suf;
+
+        if (pfEquiv) {
+            pfEquiv.textContent   = d.fundadora.equiv || '';
+            pfEquiv.style.display = d.fundadora.equiv ? '' : 'none';
+        }
+        if (pfAhorro) {
+            if (d.fundadora.ahorro) {
+                pfAhorro.textContent   = '· ' + d.fundadora.ahorro;
+                pfAhorro.style.display = '';
+            } else {
+                pfAhorro.style.display = 'none';
+            }
+        }
+        if (pdRef) pdRef.textContent = d.definitivo.ref;
+    }
+
+    periodTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            periodTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            updatePeriod(tab.dataset.period);
+        });
+    });
+
+    updatePeriod('trimestral');
+
+
+    // =========================================================================
+    // 2. MODAL
     // =========================================================================
 
     const modalOverlay = document.getElementById('modal');
@@ -91,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 2. ENVÍO FORMULARIO MODAL
+    // 3. ENVÍO FORMULARIO MODAL
     // =========================================================================
 
     if (modalForm) {
@@ -129,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 3. ENVÍO FORMULARIO DE CONTACTO
+    // 4. ENVÍO FORMULARIO DE CONTACTO
     // =========================================================================
 
     const contactForm = document.getElementById('contact-form');
@@ -168,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 4. ENVÍO A /api/submit-lead (función serverless Vercel) + BACKUP LOCAL
+    // 5. ENVÍO A /api/submit-lead (función serverless Vercel) + BACKUP LOCAL
     // =========================================================================
 
     async function saveLead(fields) {
@@ -196,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 5. CONTADOR DE PLAZAS DISPONIBLES
+    // 6. CONTADOR DE PLAZAS DISPONIBLES
     // =========================================================================
 
     let plazas = parseInt(localStorage.getItem('integras_plazas_restantes') || '25', 10);
@@ -218,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 6. FAQ ACORDEÓN
+    // 7. FAQ ACORDEÓN
     // =========================================================================
 
     const faqItems = document.querySelectorAll('.faq-item');
@@ -248,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 7. ANIMACIONES DE ENTRADA (IntersectionObserver)
+    // 8. ANIMACIONES DE ENTRADA (IntersectionObserver)
     // =========================================================================
 
     const animEls = document.querySelectorAll('.anim');

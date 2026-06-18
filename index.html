@@ -310,13 +310,32 @@
                     <h3 class="plan-nombre">ÍNTEGRAS</h3>
                     <p class="plan-claim">«El método completo. Cuerpo y mente, coordinados desde el primer día.»</p>
 
-                    <div class="plan-precio-fundadora-wrap">
-                        <div class="plan-precio-wrap">
-                            <span class="plan-precio">24,99</span>
-                            <span class="plan-precio-suf">€/mes</span>
-                        </div>
+                    <div class="period-tabs" role="group" aria-label="Periodicidad de pago">
+                        <button class="period-tab" data-period="mensual">Mensual</button>
+                        <button class="period-tab active" data-period="trimestral">
+                            Trimestral
+                            <span class="period-tab-badge">Más popular</span>
+                        </button>
+                        <button class="period-tab" data-period="semestral">
+                            Semestral
+                            <span class="period-tab-badge">Recomendada</span>
+                        </button>
+                        <button class="period-tab" data-period="anual">Anual</button>
+                    </div>
+
+                    <div class="precio-bloque">
                         <span class="plan-badge-fundadora">Precio de fundadoras · Primeras 25 plazas</span>
-                        <p class="plan-precio-definitivo">Precio definitivo: <s>54,99 €/mes</s></p>
+                        <div class="plan-precio-wrap">
+                            <span class="plan-precio" id="pf-total">63,22</span>
+                            <span class="plan-precio-suf" id="pf-suf">€ / trimestre</span>
+                        </div>
+                        <p class="precio-detalle">
+                            <span id="pf-equiv">21,07 €/mes</span>
+                            <span class="precio-ahorro" id="pf-ahorro">· Ahorras 11,75€</span>
+                        </p>
+                        <p class="plan-precio-definitivo">
+                            Precio definitivo (plaza 26+): <s id="pd-ref">138,95€ / trimestre</s>
+                        </p>
                     </div>
 
                     <p class="plan-urgencia">Solo 25 plazas al precio de fundadoras. Después, 54,99 €/mes.</p>
