@@ -8,85 +8,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // =========================================================================
-    // 1. SELECTOR DE PERIODO DE PRECIOS
-    // =========================================================================
-
-    const pricingData = {
-        mensual: {
-            pertenece: { price: '45', suffix: '€/mes', total: '45€/mes', saving: '', display: '45€/mes', nota: '' },
-            transforma: { price: '90', suffix: '€/mes', total: '90€/mes', saving: '', display: '90€/mes', nota: '' }
-        },
-        trimestral: {
-            pertenece: { price: '38', suffix: '€/mes', total: '114€ cada 3 meses', saving: 'Ahorras 21€', display: '38€/mes', nota: '' },
-            transforma: { price: '76', suffix: '€/mes', total: '228€ cada 3 meses', saving: 'Ahorras 36€', display: '76€/mes', nota: '' }
-        },
-        semestral: {
-            pertenece: { price: '36', suffix: '€/mes', total: '216€ cada 6 meses', saving: 'Ahorras 54€', display: '36€/mes', nota: '' },
-            transforma: { price: '72', suffix: '€/mes', total: '432€ cada 6 meses', saving: 'Ahorras 108€', display: '72€/mes', nota: '' }
-        },
-        anual: {
-            pertenece: { price: '33', suffix: '€/mes', total: '396€ al año', saving: 'Pagas 10 meses, disfrutas 12', display: '33€/mes', nota: 'Precio fijo para siempre como fundadora' },
-            transforma: { price: '67', suffix: '€/mes', total: '804€ al año', saving: 'Pagas 10 meses, disfrutas 12 ⭐', display: '67€/mes', nota: 'Precio fijo para siempre como fundadora' }
-        }
-    };
-
-    const periodBtns = document.querySelectorAll('.period-btn');
-    const planesGrid = document.querySelector('.planes-grid');
-
-    function updatePricing(period) {
-        const data = pricingData[period];
-        if (!data || !planesGrid) return;
-
-        planesGrid.style.opacity = '0.5';
-        planesGrid.style.transform = 'scale(0.99)';
-        planesGrid.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
-
-        setTimeout(() => {
-            ['pertenece', 'transforma'].forEach(plan => {
-                const d = data[plan];
-
-                const priceEl = document.getElementById('price-' + plan);
-                const suffixEl = document.getElementById('suffix-' + plan);
-                const totalEl = document.getElementById('total-' + plan);
-                const savingEl = document.getElementById('saving-' + plan);
-                const displayEl = document.getElementById('pdisplay-' + plan);
-                const notaEl = document.getElementById('nota-' + plan);
-
-                if (priceEl) priceEl.textContent = d.price;
-                if (suffixEl) suffixEl.textContent = d.suffix;
-                if (totalEl) totalEl.textContent = d.total;
-                if (displayEl) displayEl.textContent = d.display;
-                if (notaEl) notaEl.textContent = d.nota;
-
-                if (savingEl) {
-                    if (d.saving) {
-                        savingEl.textContent = d.saving;
-                        savingEl.style.display = 'inline-block';
-                    } else {
-                        savingEl.style.display = 'none';
-                    }
-                }
-            });
-
-            planesGrid.style.opacity = '1';
-            planesGrid.style.transform = 'scale(1)';
-        }, 150);
-    }
-
-    periodBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            periodBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            updatePricing(btn.dataset.period);
-        });
-    });
-
-    // Render initial state (trimestral is active by default)
-    updatePricing('trimestral');
-
-
-    // =========================================================================
-    // 2. MODAL
+    // 1. MODAL
     // =========================================================================
 
     const modalOverlay = document.getElementById('modal');
@@ -169,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 3. ENVÍO FORMULARIO MODAL
+    // 2. ENVÍO FORMULARIO MODAL
     // =========================================================================
 
     if (modalForm) {
@@ -207,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 4. ENVÍO FORMULARIO DE CONTACTO
+    // 3. ENVÍO FORMULARIO DE CONTACTO
     // =========================================================================
 
     const contactForm = document.getElementById('contact-form');
@@ -246,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 5. ENVÍO A /api/submit-lead (función serverless Vercel) + BACKUP LOCAL
+    // 4. ENVÍO A /api/submit-lead (función serverless Vercel) + BACKUP LOCAL
     // =========================================================================
 
     async function saveLead(fields) {
@@ -274,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 6. CONTADOR DE PLAZAS DISPONIBLES
+    // 5. CONTADOR DE PLAZAS DISPONIBLES
     // =========================================================================
 
     let plazas = parseInt(localStorage.getItem('integras_plazas_restantes') || '25', 10);
@@ -296,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 7. FAQ ACORDEÓN
+    // 6. FAQ ACORDEÓN
     // =========================================================================
 
     const faqItems = document.querySelectorAll('.faq-item');
@@ -326,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // 8. ANIMACIONES DE ENTRADA (IntersectionObserver)
+    // 7. ANIMACIONES DE ENTRADA (IntersectionObserver)
     // =========================================================================
 
     const animEls = document.querySelectorAll('.anim');

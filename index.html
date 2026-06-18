@@ -26,9 +26,6 @@
         p, li, h1, h2, h3, h4 { overflow-wrap: break-word; }
 
         @media (max-width: 576px) {
-            /* Plan Transforma: espacio superior para la etiqueta "RECOMENDADO" */
-            .plan-destacado { margin-top: 1.75rem; }
-
             /* Lista de valor: el precio tachado pasa a su propia línea en tarjetas estrechas */
             .valor-lista li { flex-wrap: wrap; }
             .val { margin-left: 0; flex-basis: 100%; padding-top: .15rem; }
@@ -304,94 +301,49 @@
      ============================================================ -->
 <section class="oferta anim" id="tarifas">
     <div class="container">
-        <span class="section-label">Las membresías</span>
-        <h2>Todo lo que incluye ÍNTEGRAS.</h2>
-        <p class="oferta-sub">Dos formas de entrar. Una sola pregunta: ¿cuánto quiero comprometerme conmigo misma?</p>
+        <span class="section-label">La membresía</span>
+        <h2>Una membresía. Todo lo que necesitas.</h2>
 
-        <div class="period-selector">
-            <button class="period-btn" data-period="mensual">Mensual</button>
-            <button class="period-btn active" data-period="trimestral">Trimestral ⭐</button>
-            <button class="period-btn" data-period="semestral">Semestral</button>
-            <button class="period-btn" data-period="anual">Anual 🎁</button>
-        </div>
-
-        <div class="planes-grid">
-
-            <!-- PLAN PERTENECE -->
-            <div class="plan-card" id="plan-pertenece">
+        <div class="plan-unico-wrap">
+            <div class="plan-card plan-unico">
                 <div class="plan-head">
-                    <h3 class="plan-nombre">PERTENECE</h3>
-                    <p class="plan-claim">«En 30 días sabrás que ÍNTEGRAS es para ti.»</p>
-                    <div class="plan-precio-wrap">
-                        <span class="plan-precio" id="price-pertenece">40</span>
-                        <span class="plan-precio-suf" id="suffix-pertenece">€/mes</span>
+                    <h3 class="plan-nombre">ÍNTEGRAS</h3>
+                    <p class="plan-claim">«El método completo. Cuerpo y mente, coordinados desde el primer día.»</p>
+
+                    <div class="plan-precio-fundadora-wrap">
+                        <div class="plan-precio-wrap">
+                            <span class="plan-precio">24,99</span>
+                            <span class="plan-precio-suf">€/mes</span>
+                        </div>
+                        <span class="plan-badge-fundadora">Precio de fundadoras · Primeras 25 plazas</span>
+                        <p class="plan-precio-definitivo">Precio definitivo: <s>54,99 €/mes</s></p>
                     </div>
-                    <p class="plan-total" id="total-pertenece">114€ cada 3 meses</p>
-                    <p class="plan-precio-nota" id="nota-pertenece"></p>
-                    <span class="plan-ahorro" id="saving-pertenece">Ahorras 21€</span>
+
+                    <p class="plan-urgencia">Solo 25 plazas al precio de fundadoras. Después, 54,99 €/mes.</p>
                 </div>
 
                 <div class="plan-value-stack">
-                    <p class="valor-titulo">Lo que incluye:</p>
+                    <p class="valor-titulo">Todo lo que incluye:</p>
                     <ul class="valor-lista">
-                        <li><span class="ck">✓</span> Comunidad activa en Skool con todas las mujeres</li>
-                        <li><span class="ck">✓</span> 4 sesiones en directo al mes con Jose <em class="val">80€/mes</em></li>
-                        <li><span class="ck">✓</span> Acceso a todas las sesiones grabadas de Jose <em class="val">20€/mes</em></li>
-                        <li><span class="ck">✓</span> Guía de calentamiento y movilidad</li>
-                        <li><span class="ck">✓</span> Taller mensual de Teresa en directo <em class="val">80€/mes</em></li>
-                        <li><span class="ck">✓</span> Acceso al foro Cuerpo y Mente con ÍNTEGRAS <em class="val">30€/mes</em></li>
-                        <li><span class="ck">✓</span> Revisión mensual de progreso <em class="val">25€/mes</em></li>
-                        <li><span class="ck">✓</span> Informe trimestral de salud <em class="val">15€/mes</em></li>
+                        <li><span class="ck">✓</span> Acceso completo a la comunidad privada en Skool</li>
+                        <li><span class="ck">✓</span> 4 sesiones de entrenamiento al mes con José (vídeo)</li>
+                        <li><span class="ck">✓</span> Taller mensual en directo con Teresa (con grabación)</li>
+                        <li><span class="ck">✓</span> Contenido exclusivo: rutinas, recursos y lecturas especializadas</li>
+                        <li><span class="ck">✓</span> Foro Cuerpo y Mente con respuesta de Teresa y José</li>
+                        <li><span class="ck">✓</span> Servicios à la carte disponibles (consultas individuales, etc.)</li>
                     </ul>
                     <div class="valor-resumen">
                         <span>Valor total estimado: <strong>270€/mes</strong></span>
-                        <span>Tu precio fundadora: <strong id="pdisplay-pertenece">40€/mes</strong></span>
+                        <span>Tu precio fundadora: <strong>24,99€/mes</strong></span>
                     </div>
                 </div>
 
-                <button class="btn-cta btn-outline js-open-modal" data-plan="pertenece">Quiero Pertenece →</button>
-            </div>
-
-            <!-- PLAN TRANSFORMA -->
-            <div class="plan-card plan-destacado" id="plan-transforma">
-                <div class="plan-badge-top">⭐ RECOMENDADO</div>
-                <div class="plan-head">
-                    <h3 class="plan-nombre">TRANSFORMA</h3>
-                    <p class="plan-claim">«En 90 días tu cuerpo y tu cabeza serán diferentes.»</p>
-                    <div class="plan-precio-wrap">
-                        <span class="plan-precio" id="price-transforma">80</span>
-                        <span class="plan-precio-suf" id="suffix-transforma">€/mes</span>
-                    </div>
-                    <p class="plan-total" id="total-transforma">228€ cada 3 meses</p>
-                    <p class="plan-precio-nota" id="nota-transforma"></p>
-                    <span class="plan-ahorro" id="saving-transforma">Ahorras 36€</span>
-                </div>
-
-                <div class="plan-value-stack">
-                    <p class="valor-titulo">Todo lo de Pertenece, más:</p>
-                    <ul class="valor-lista">
-                        <li><span class="ck plus">✓</span> <strong>8 sesiones</strong> en directo al mes con Jose <em class="val">160€/mes</em></li>
-                        <li><span class="ck plus">✓</span> Contenido exclusivo mensual del Classroom — recursos, herramientas y lecturas que Jose y Teresa crean a partir de lo que vive la comunidad</li>
-                        <li><span class="ck plus">✓</span> Talleres de Teresa <strong>grabados para siempre</strong> <em class="val">20€/mes</em></li>
-                        <li><span class="ck plus">✓</span> Prioridad de respuesta en el foro Cuerpo y Mente + acceso a grabaciones de sesiones especiales</li>
-                        <li><span class="ck plus">✓</span> <strong>Revisión bisemanal</strong> con orientaciones personalizadas <em class="val">80€/mes</em></li>
-                        <li><span class="ck plus">✓</span> Informe trimestral en profundidad</li>
-                        <li><span class="ck plus">✓</span> <strong>15% de descuento</strong> en servicios individuales a la carta</li>
-                        <li><span class="ck plus">✓</span> Categorías exclusivas en el Classroom</li>
-                    </ul>
-                    <div class="valor-resumen valor-resumen-dest">
-                        <span>Valor total estimado: <strong>435€/mes</strong></span>
-                        <span>Tu precio fundadora: <strong id="pdisplay-transforma">80€/mes</strong></span>
-                    </div>
-                </div>
-
-                <button class="btn-cta js-open-modal" data-plan="transforma">Quiero Transforma →</button>
+                <button class="btn-cta btn-full js-open-modal">Quiero unirme a ÍNTEGRAS →</button>
             </div>
         </div>
 
         <p class="plan-nota">
-            * Precios exclusivos para las primeras 25 fundadoras de ÍNTEGRAS. Se congelan para siempre
-            mientras permanezcas activa. Cuando se llenen las plazas, Pertenece subirá a 57€/mes y Transforma a 115€/mes.
+            * Precio de fundadoras exclusivo para las primeras 25 plazas, congelado para siempre mientras permanezcas activa. A partir de la plaza 26, la membresía pasa a 54,99 €/mes.
         </p>
 
         <!-- Servicios a la carta -->
@@ -406,8 +358,7 @@
                     </div>
                     <div class="carta-precios">
                         <span class="carta-precio">70€/sesión</span>
-                        <span class="carta-desc-pertenece">Precio miembra · Pertenece</span>
-                        <span class="carta-desc-transforma">59,50€ con Transforma <span class="carta-dto">-15%</span></span>
+                        <span class="carta-desc-miembra">Precio exclusivo para miembras ÍNTEGRAS</span>
                     </div>
                 </div>
                 <div class="carta-item">
@@ -417,8 +368,7 @@
                     </div>
                     <div class="carta-precios">
                         <span class="carta-precio">50€/sesión</span>
-                        <span class="carta-desc-pertenece">Precio miembra · Pertenece</span>
-                        <span class="carta-desc-transforma">42,50€ con Transforma <span class="carta-dto">-15%</span></span>
+                        <span class="carta-desc-miembra">Precio exclusivo para miembras ÍNTEGRAS</span>
                     </div>
                 </div>
                 <div class="carta-item">
@@ -428,8 +378,7 @@
                     </div>
                     <div class="carta-precios">
                         <span class="carta-precio">40€/mes</span>
-                        <span class="carta-desc-pertenece">Precio miembra · Pertenece</span>
-                        <span class="carta-desc-transforma">34€ con Transforma <span class="carta-dto">-15%</span></span>
+                        <span class="carta-desc-miembra">Precio exclusivo para miembras ÍNTEGRAS</span>
                     </div>
                 </div>
             </div>
@@ -568,20 +517,20 @@
             </div>
             <div class="faq-item">
                 <button class="faq-preg">
-                    <span>¿Qué diferencia hay entre Pertenece y Transforma?</span>
+                    <span>¿Cuánto cuesta exactamente y qué pasa cuando se llenen las plazas?</span>
                     <span class="faq-icono">+</span>
                 </button>
                 <div class="faq-resp"><div class="faq-resp-inner">
-                    Cuatro diferencias clave: el doble de sesiones semanales con Jose, los talleres de Teresa grabados y accesibles para siempre, la revisión bisemanal en lugar de mensual, y prioridad en el directo mensual Cuerpo y Mente. Si quieres acompañamiento real y activo, Transforma es el plan.
+                    La membresía ÍNTEGRAS tiene un precio de fundadoras de 24,99 €/mes para las primeras 25 plazas. Una vez cubiertas esas plazas, el precio sube a 54,99 €/mes. Las fundadoras conservan su precio bloqueado para siempre mientras permanezcan activas.
                 </div></div>
             </div>
             <div class="faq-item">
                 <button class="faq-preg">
-                    <span>¿Los precios de fundadora son definitivos?</span>
+                    <span>¿El precio de fundadora se mantiene para siempre?</span>
                     <span class="faq-icono">+</span>
                 </button>
                 <div class="faq-resp"><div class="faq-resp-inner">
-                    Sí. Precio exclusivo para las primeras 25 fundadoras, congelado para siempre mientras permanezcas activa. Cuando se llenen las plazas, Pertenece sube a 57€/mes y Transforma a 115€/mes. Las fundadoras conservan el suyo.
+                    Sí. El precio de 24,99 €/mes queda congelado para las primeras 25 fundadoras mientras permanezcan activas en la membresía. No importa cuánto suba el precio después: el tuyo no cambia.
                 </div></div>
             </div>
             <div class="faq-item">
@@ -697,24 +646,19 @@
                     <textarea id="m-reason" rows="3" placeholder="Cuéntanos brevemente..." required></textarea>
                 </div>
                 <div class="form-group">
-                    <label>¿Qué plan te interesa? <span class="optional">(Opcional)</span></label>
+                    <label>¿Tienes alguna duda antes de unirte? <span class="optional">(Opcional)</span></label>
                     <div class="plan-radio-group">
-                        <label class="plan-radio-option" id="radio-pertenece">
-                            <input type="radio" name="m-plan" value="pertenece">
+                        <label class="plan-radio-option" id="radio-integras">
+                            <input type="radio" name="m-plan" value="integras">
                             <span class="plan-radio-label">
-                                <strong>Pertenece</strong>
-                            </span>
-                        </label>
-                        <label class="plan-radio-option" id="radio-transforma">
-                            <input type="radio" name="m-plan" value="transforma">
-                            <span class="plan-radio-label">
-                                <strong>Transforma</strong>
+                                <strong>ÍNTEGRAS</strong>
+                                <em>24,99€/mes · Fundadoras</em>
                             </span>
                         </label>
                         <label class="plan-radio-option" id="radio-nosé">
                             <input type="radio" name="m-plan" value="" checked>
                             <span class="plan-radio-label">
-                                <strong>Aún no lo sé</strong>
+                                <strong>Quiero informarme primero</strong>
                             </span>
                         </label>
                     </div>
