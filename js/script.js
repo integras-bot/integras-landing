@@ -440,4 +440,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+    // =========================================================================
+    // 12. GLOW DEL CTA AL ENTRAR EN VIEWPORT
+    // =========================================================================
+
+    const glowBtns = document.querySelectorAll('.js-cta-glow');
+
+    if (glowBtns.length && 'IntersectionObserver' in window) {
+        const glowObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('cta-glow');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.6 });
+
+        glowBtns.forEach(btn => glowObserver.observe(btn));
+    }
+
 });
