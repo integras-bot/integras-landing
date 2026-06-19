@@ -1746,3 +1746,281 @@ section {
     font-size: .8rem;
     color: var(--color-text-light);
 }
+
+/* --------------------------------------------------------------------------
+   25. BARRA DE PLAZAS FUNDADORAS
+   -------------------------------------------------------------------------- */
+.spots-bar-wrap {
+    margin-top: 1rem;
+    padding: .875rem 1rem;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.spots-bar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5rem;
+    font-size: .8rem;
+    color: var(--color-text-mid);
+}
+
+.spots-bar-label {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: .72rem;
+}
+
+.spots-bar-count strong {
+    color: var(--color-text-dark);
+}
+
+.spots-bar-track {
+    height: 8px;
+    background: var(--color-bg-alt);
+    border-radius: 100px;
+    overflow: hidden;
+    margin-bottom: .5rem;
+}
+
+.spots-bar-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+    border-radius: 100px;
+    transition: width 1.2s cubic-bezier(.25, .46, .45, .94);
+}
+
+.spots-bar-note {
+    font-size: .76rem;
+    color: var(--color-text-light);
+    text-align: center;
+    font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   26. BENEFICIOS EXPANDIBLES
+   -------------------------------------------------------------------------- */
+.valor-hint {
+    font-weight: 400;
+    font-size: .78em;
+    color: var(--color-text-light);
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.beneficios-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.beneficio-item {
+    border-bottom: 1px solid var(--color-border);
+}
+.beneficio-item:last-child {
+    border-bottom: none;
+}
+
+.beneficio-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    background: none;
+    border: none;
+    padding: .7rem .875rem;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: .875rem;
+    color: var(--color-text-mid);
+    cursor: pointer;
+    transition: background .2s, color .2s;
+    min-height: 44px;
+}
+
+.beneficio-header:hover {
+    background: rgba(125,96,80,.05);
+    color: var(--color-text-dark);
+}
+
+.beneficio-item.open .beneficio-header {
+    background: rgba(125,96,80,.06);
+    color: var(--color-text-dark);
+}
+
+.beneficio-titulo {
+    flex: 1;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.beneficio-toggle {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--color-primary);
+    flex-shrink: 0;
+    transition: transform .3s;
+    line-height: 1;
+    width: 20px;
+    text-align: center;
+}
+
+.beneficio-item.open .beneficio-toggle {
+    transform: rotate(45deg);
+}
+
+.beneficio-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease;
+}
+
+.beneficio-body p {
+    padding: .1rem .875rem .75rem 2.1rem;
+    font-size: .82rem;
+    color: var(--color-text-light);
+    line-height: 1.65;
+}
+
+/* --------------------------------------------------------------------------
+   27. TESTIMONIOS
+   -------------------------------------------------------------------------- */
+.testimonios {
+    background: var(--color-bg-alt);
+    text-align: center;
+}
+.testimonios h2 { margin-bottom: 2.5rem; }
+
+.testimonios-carousel {
+    max-width: 640px;
+    margin-inline: auto;
+}
+
+.testimonios-track {
+    min-height: 180px;
+    position: relative;
+}
+
+.testimonio {
+    display: none;
+}
+
+.testimonio.active {
+    display: block;
+    animation: fadeInTestimonio .4s ease;
+}
+
+@keyframes fadeInTestimonio {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.testimonio-texto {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.08rem;
+    color: var(--color-text-mid);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding: 0 1.25rem;
+}
+
+.testimonio-texto::before {
+    content: '\201C';
+    position: absolute;
+    left: 0;
+    top: -.15em;
+    font-size: 2.75rem;
+    color: var(--color-accent);
+    opacity: .45;
+    line-height: 1;
+    font-style: normal;
+}
+
+.testimonio-autora {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+}
+
+.testimonio-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.testimonio-autora strong {
+    display: block;
+    font-size: .95rem;
+    color: var(--color-text-dark);
+}
+
+.testimonio-autora span {
+    display: block;
+    font-size: .82rem;
+    color: var(--color-text-light);
+}
+
+.testimonios-dots {
+    display: flex;
+    justify-content: center;
+    gap: .6rem;
+    margin-top: 2rem;
+}
+
+.testimonios-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-border);
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+    padding: 0;
+    touch-action: manipulation;
+}
+
+.testimonios-dot.active {
+    background: var(--color-accent);
+    transform: scale(1.3);
+}
+
+/* Responsive nuevos componentes */
+@media (max-width: 576px) {
+    .spots-bar-wrap { padding: .75rem; }
+
+    .beneficio-header { font-size: .84rem; padding: .65rem .75rem; gap: .5rem; }
+    .beneficio-body p { padding: .1rem .75rem .65rem 1.85rem; font-size: .81rem; }
+
+    .testimonio-texto { font-size: .97rem; padding: 0 .75rem; }
+    .testimonio-texto::before { font-size: 2.25rem; }
+    .testimonios-track { min-height: 220px; }
+
+    .valor-hint { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .spots-bar-fill { transition: none; }
+    .testimonio.active { animation: none; }
+    .beneficio-toggle { transition: none; }
+    .beneficio-body { transition: none; }
+}

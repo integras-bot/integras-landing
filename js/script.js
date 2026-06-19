@@ -322,4 +322,122 @@ document.addEventListener('DOMContentLoaded', () => {
         animEls.forEach(el => el.classList.add('animated'));
     }
 
+
+    // =========================================================================
+    // 9. BARRA DE PLAZAS FUNDADORAS (animación de entrada)
+    // =========================================================================
+
+    const spotsBarFill = document.querySelector('.spots-bar-fill');
+
+    if (spotsBarFill) {
+        const targetWidth = spotsBarFill.dataset.width || '0';
+
+        if ('IntersectionObserver' in window) {
+            const spotsObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        spotsBarFill.style.width = targetWidth + '%';
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            spotsObserver.observe(spotsBarFill);
+        } else {
+            spotsBarFill.style.width = targetWidth + '%';
+        }
+    }
+
+
+    // =========================================================================
+    // 10. BENEFICIOS EXPANDIBLES (touch/click)
+    // =========================================================================
+
+    const beneficioItems = document.querySelectorAll('.beneficio-item');
+
+    beneficioItems.forEach(item => {
+        const header = item.querySelector('.beneficio-header');
+        const body = item.querySelector('.beneficio-body');
+        if (!header || !body) return;
+
+        header.addEventListener('click', () => {
+            const isOpen = item.classList.contains('open');
+
+            beneficioItems.forEach(i => {
+                i.classList.remove('open');
+                const b = i.querySelector('.beneficio-body');
+                if (b) b.style.maxHeight = '0';
+            });
+
+            if (!isOpen) {
+                item.classList.add('open');
+                body.style.maxHeight = body.scrollHeight + 'px';
+            }
+        });
+    });
+
+
+    // =========================================================================
+    // 11. CARRUSEL DE TESTIMONIOS
+    // =========================================================================
+
+    const testimonios = document.querySelectorAll('.testimonio');
+    const testimoniosDots = document.querySelectorAll('.testimonios-dot');
+    const testimoniosTrack = document.querySelector('.testimonios-track');
+    let currentTestimonio = 0;
+    let testimonioTimer = null;
+
+    function showTestimonio(index) {
+        testimonios.forEach((t, i) => t.classList.toggle('active', i === index));
+        testimoniosDots.forEach((d, i) => {
+            d.classList.toggle('active', i === index);
+            d.setAttribute('aria-selected', String(i === index));
+        });
+        currentTestimonio = index;
+    }
+
+    function nextTestimonio() {
+        showTestimonio((currentTestimonio + 1) % testimonios.length);
+    }
+
+    function startTestimonioTimer() {
+        clearInterval(testimonioTimer);
+        testimonioTimer = setInterval(nextTestimonio, 5500);
+    }
+
+    if (testimonios.length > 0) {
+        startTestimonioTimer();
+
+        testimoniosDots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                showTestimonio(i);
+                startTestimonioTimer();
+            });
+        });
+
+        if (testimoniosTrack) {
+            let touchStartX = 0;
+
+            testimoniosTrack.addEventListener('touchstart', e => {
+                touchStartX = e.touches[0].clientX;
+            }, { passive: true });
+
+            testimoniosTrack.addEventListener('touchend', e => {
+                const dx = e.changedTouches[0].clientX - touchStartX;
+                if (Math.abs(dx) > 50) {
+                    if (dx < 0) showTestimonio((currentTestimonio + 1) % testimonios.length);
+                    else showTestimonio((currentTestimonio - 1 + testimonios.length) % testimonios.length);
+                    startTestimonioTimer();
+                }
+            }, { passive: true });
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearInterval(testimonioTimer);
+            } else {
+                startTestimonioTimer();
+            }
+        });
+    }
+
 });
