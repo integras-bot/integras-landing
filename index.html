@@ -16,9 +16,10 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💪</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="preload" href="./css/styles.css" as="style">
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/membership.css">
 
     <!-- Optimizaciones móvil complementarias al stylesheet externo -->
     <style>
@@ -292,248 +293,240 @@
 
 
 <!-- ============================================================
-     SECCIÓN 7 — LA OFERTA (Value Stack — Hormozi / Brunson)
-     Muestra el valor ANTES del precio. Selector de periodo.
+     SECCIÓN 7 — LA MEMBRESÍA (Claude Design, bloque aislado integras-mem__)
      ============================================================ -->
-<section class="oferta anim" id="tarifas">
-    <div class="container">
-        <span class="section-label">La membresía</span>
-        <h2>Una membresía. Todo lo que necesitas.</h2>
+<section class="integras-mem anim" id="tarifas">
 
-        <div class="plan-unico-wrap">
-            <div class="plan-card plan-unico">
-                <div class="plan-head">
-                    <h3 class="plan-nombre">ÍNTEGRAS</h3>
-                    <p class="plan-claim">«El método completo. Cuerpo y mente, coordinados desde el primer día.»</p>
+  <!-- HEADER -->
+  <header class="integras-mem__header">
+    <span class="integras-mem__eyebrow">Íntegras · Salud integral para mujeres +50</span>
+    <h2 class="integras-mem__display-title">Una membresía. Todo lo que necesitas.</h2>
+    <p class="integras-mem__lead">Una invitación a cuidarte de forma integral, acompañada de mujeres que están en tu misma etapa.</p>
+  </header>
 
-                    <div class="period-tabs" role="group" aria-label="Periodicidad de pago">
-                        <button class="period-tab" data-period="mensual">Mensual</button>
-                        <button class="period-tab active" data-period="trimestral">
-                            <span class="period-tab-badge">★ Más popular</span>
-                            Trimestral
-                        </button>
-                        <button class="period-tab" data-period="semestral">
-                            <span class="period-tab-badge">Recomendada</span>
-                            Semestral
-                        </button>
-                        <button class="period-tab" data-period="anual">🎁 Anual</button>
-                    </div>
-
-                    <div class="precio-bloque">
-                        <span class="plan-badge-fundadora">Precio de fundadoras · Primeras 25 plazas</span>
-                        <div class="plan-precio-wrap">
-                            <span class="plan-precio" id="pf-total">63,22</span>
-                            <span class="plan-precio-suf" id="pf-suf">€ / trimestre</span>
-                        </div>
-                        <p class="precio-detalle">
-                            <span id="pf-equiv">21,07 €/mes</span>
-                            <span class="precio-ahorro" id="pf-ahorro">· Ahorras 11,75€</span>
-                        </p>
-                        <p class="plan-precio-definitivo">
-                            Precio definitivo (plaza 26+): <s id="pd-ref">138,95€ / trimestre</s>
-                        </p>
-                    </div>
-
-                    <p class="plan-urgencia">Solo 25 plazas al precio de fundadoras. Después, 54,99 €/mes.</p>
-
-                    <!-- Barra de plazas -->
-                    <div class="spots-bar-wrap">
-                        <div class="spots-bar-header">
-                            <span class="spots-bar-label">Plazas de fundadoras</span>
-                            <span class="spots-bar-count"><strong class="spots-taken">3</strong> de <span class="spots-total">25</span> ocupadas</span>
-                        </div>
-                        <div class="spots-bar-track" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" aria-label="12% de plazas ocupadas">
-                            <div class="spots-bar-fill" data-width="12"></div>
-                        </div>
-                        <p class="spots-bar-note"><strong>22 plazas disponibles</strong> · Precio de fundadoras. Tienes tu plaza desde 18,49 €/mes.</p>
-                    </div>
-
-                    <button class="btn-cta btn-full js-open-modal js-cta-glow">Quiero unirme a ÍNTEGRAS →</button>
-                </div>
-
-                <div class="plan-value-stack">
-                    <p class="valor-titulo">Todo lo que incluye <span class="valor-hint">(toca para ver más)</span></p>
-                    <ul class="beneficios-lista">
-                        <li class="beneficio-item">
-                            <button class="beneficio-header">
-                                <span class="beneficio-icono">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                                </span>
-                                <span class="beneficio-titulo">Comunidad privada en Skool</span>
-                                <span class="beneficio-toggle" aria-hidden="true">+</span>
-                            </button>
-                            <div class="beneficio-body">
-                                <p>Un espacio cuidado y privado donde compartir avances, dudas y compañía cada día.</p>
-                            </div>
-                        </li>
-                        <li class="beneficio-item">
-                            <button class="beneficio-header">
-                                <span class="beneficio-icono">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5l11 11"></path><path d="M21 21l-1-1"></path><path d="M3 3l1 1"></path><path d="M18 22l4-4"></path><path d="M2 6l4-4"></path><path d="M3 10l7-7"></path><path d="M14 21l7-7"></path></svg>
-                                </span>
-                                <span class="beneficio-titulo">4 sesiones de entrenamiento al mes con José</span>
-                                <span class="beneficio-toggle" aria-hidden="true">+</span>
-                            </button>
-                            <div class="beneficio-body">
-                                <p>Rutinas en vídeo seguras y progresivas, pensadas para el cuerpo de mujeres +50.</p>
-                            </div>
-                        </li>
-                        <li class="beneficio-item">
-                            <button class="beneficio-header">
-                                <span class="beneficio-icono">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                                </span>
-                                <span class="beneficio-titulo">Taller mensual en directo con Teresa</span>
-                                <span class="beneficio-toggle" aria-hidden="true">+</span>
-                            </button>
-                            <div class="beneficio-body">
-                                <p>Bienestar emocional y herramientas para esta etapa. Siempre con grabación disponible.</p>
-                            </div>
-                        </li>
-                        <li class="beneficio-item">
-                            <button class="beneficio-header">
-                                <span class="beneficio-icono">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                                </span>
-                                <span class="beneficio-titulo">Contenido exclusivo</span>
-                                <span class="beneficio-toggle" aria-hidden="true">+</span>
-                            </button>
-                            <div class="beneficio-body">
-                                <p>Rutinas, recursos y lecturas especializadas que se amplían cada mes.</p>
-                            </div>
-                        </li>
-                        <li class="beneficio-item">
-                            <button class="beneficio-header">
-                                <span class="beneficio-icono">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                </span>
-                                <span class="beneficio-titulo">Foro Cuerpo y Mente</span>
-                                <span class="beneficio-toggle" aria-hidden="true">+</span>
-                            </button>
-                            <div class="beneficio-body">
-                                <p>Pregunta lo que necesites: Teresa y José responden personalmente.</p>
-                            </div>
-                        </li>
-                        <li class="beneficio-item">
-                            <button class="beneficio-header">
-                                <span class="beneficio-icono">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6-6.3 4.6L8 14 2 9.4h7.6z"></path></svg>
-                                </span>
-                                <span class="beneficio-titulo">Servicios à la carte</span>
-                                <span class="beneficio-toggle" aria-hidden="true">+</span>
-                            </button>
-                            <div class="beneficio-body">
-                                <p>Consultas individuales y acompañamiento personalizado cuando lo desees.</p>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="valor-resumen">
-                        <span>Valor total estimado: <strong>270€/mes</strong></span>
-                        <span>Tu precio fundadora: <strong>24,99€/mes</strong></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <p class="plan-nota">
-            * Precio de fundadoras exclusivo para las primeras 25 plazas, congelado para siempre mientras permanezcas activa. A partir de la plaza 26, la membresía pasa a 54,99 €/mes.
-        </p>
-
-        <!-- Servicios a la carta -->
-        <div class="carta-wrap anim">
-            <h3>Servicios individuales · Solo para miembras de ÍNTEGRAS</h3>
-            <p class="carta-nota">Acceso exclusivo para miembras. No disponibles fuera de membresía.</p>
-            <div class="carta-grid">
-                <div class="carta-item">
-                    <div>
-                        <strong>Sesión de psicología de la salud</strong>
-                        <p>Con Teresa. Para momentos de cambio vital.</p>
-                    </div>
-                    <div class="carta-precios">
-                        <span class="carta-precio">70€/sesión</span>
-                        <span class="carta-desc-miembra">Precio exclusivo para miembras ÍNTEGRAS</span>
-                    </div>
-                </div>
-                <div class="carta-item">
-                    <div>
-                        <strong>Sesión de entrenamiento 1 a 1</strong>
-                        <p>Con Jose. Corrección técnica y evaluación directa.</p>
-                    </div>
-                    <div class="carta-precios">
-                        <span class="carta-precio">50€/sesión</span>
-                        <span class="carta-desc-miembra">Precio exclusivo para miembras ÍNTEGRAS</span>
-                    </div>
-                </div>
-                <div class="carta-item">
-                    <div>
-                        <strong>Programación personalizada</strong>
-                        <p>Para gym o casa. Plan detallado y ajustado a ti.</p>
-                    </div>
-                    <div class="carta-precios">
-                        <span class="carta-precio">40€/mes</span>
-                        <span class="carta-desc-miembra">Precio exclusivo para miembras ÍNTEGRAS</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- CONTADOR DE PLAZAS -->
+  <div class="integras-mem__seats">
+    <div class="integras-mem__seats-row">
+      <span class="integras-mem__seats-label">Plazas de fundadoras</span>
+      <span class="integras-mem__seats-count">3 de 25 ocupadas</span>
     </div>
-</section>
-
-
-<!-- ============================================================
-     SECCIÓN 7b — TESTIMONIOS
-     ============================================================ -->
-<section class="testimonios anim" id="testimonios">
-    <div class="container">
-        <span class="section-label">Lo que dicen ellas</span>
-        <h2>Mujeres que ya han dado el paso</h2>
-
-        <div class="testimonios-carousel">
-            <div class="testimonios-track">
-                <div class="testimonio active">
-                    <blockquote class="testimonio-texto">
-                        «Por fin alguien que entiende que el cuerpo y la mente van juntos. Llevo tres meses y por primera vez no he abandonado. Teresa y Jose se complementan de una forma que no había visto antes.»
-                    </blockquote>
-                    <div class="testimonio-autora">
-                        <div class="testimonio-avatar">A</div>
-                        <div>
-                            <strong>Araceli</strong>
-                            <span>62 años</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonio">
-                    <blockquote class="testimonio-texto">
-                        «Tenía miedo de no poder seguir el ritmo. Empecé desde cero y Jose me ha demostrado que mi cuerpo puede más de lo que creía. La comunidad es un regalo.»
-                    </blockquote>
-                    <div class="testimonio-autora">
-                        <div class="testimonio-avatar">M</div>
-                        <div>
-                            <strong>María Ángeles</strong>
-                            <span>57 años</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonio">
-                    <blockquote class="testimonio-texto">
-                        «Lo que más me ha sorprendido es que el método funciona porque no te deja sola en ningún momento. Teresa trabaja exactamente lo que me frena mentalmente. Eso lo cambia todo.»
-                    </blockquote>
-                    <div class="testimonio-autora">
-                        <div class="testimonio-avatar">T</div>
-                        <div>
-                            <strong>Toñi</strong>
-                            <span>57 años</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonios-dots" role="tablist" aria-label="Testimonios">
-                <button class="testimonios-dot active" data-index="0" role="tab" aria-selected="true" aria-label="Testimonio de Araceli"></button>
-                <button class="testimonios-dot" data-index="1" role="tab" aria-selected="false" aria-label="Testimonio de María Ángeles"></button>
-                <button class="testimonios-dot" data-index="2" role="tab" aria-selected="false" aria-label="Testimonio de Toñi"></button>
-            </div>
-        </div>
+    <div class="integras-mem__seats-track">
+      <div class="integras-mem__seats-fill" style="width:12%"></div>
     </div>
+    <p class="integras-mem__seats-note"><strong>22 plazas disponibles</strong> · Precio de fundadoras. Tienes tu plaza desde 18,49€/mes.</p>
+  </div>
+
+  <!-- SELECTOR DE PERIODICIDAD -->
+  <div class="integras-mem__pills" role="tablist">
+    <button class="integras-mem__pill" data-plan="0">
+      <span>Mensual</span>
+    </button>
+    <button class="integras-mem__pill is-active" data-plan="1">
+      <span class="integras-mem__pill-badge">⭐ Más popular</span>
+      <span>Trimestral</span>
+    </button>
+    <button class="integras-mem__pill" data-plan="2">
+      <span class="integras-mem__pill-badge">Recomendada</span>
+      <span>Semestral</span>
+    </button>
+    <button class="integras-mem__pill" data-plan="3">
+      <span>🎁 Anual</span>
+    </button>
+  </div>
+
+  <!-- TARJETA PRINCIPAL -->
+  <div class="integras-mem__card">
+
+    <!-- Columna precio -->
+    <div class="integras-mem__card-price">
+      <span class="integras-mem__eyebrow integras-mem__eyebrow--gold">Precio fundadoras · <span data-mem-bind="label">Trimestral</span></span>
+
+      <div class="integras-mem__price-anim">
+        <div class="integras-mem__price">
+          <span class="integras-mem__price-amount" data-mem-bind="price">21,07€</span>
+          <span class="integras-mem__price-per">/mes</span>
+        </div>
+
+        <div class="integras-mem__price-total" data-mem-bind="total">63,22€ cada 3 meses</div>
+
+        <div class="integras-mem__savings" data-mem-bind="savings">★ Ahorras 11,75€</div>
+
+        <div class="integras-mem__price-special" data-mem-bind="special" hidden></div>
+      </div>
+
+      <div class="integras-mem__price-def">Después subirá a <span data-mem-bind="def" class="integras-mem__strike">46,32€/mes</span></div>
+
+      <button class="integras-mem__cta js-open-modal" data-plan="integras">Quiero unirme a ÍNTEGRAS</button>
+
+      <p class="integras-mem__fineprint">Precio de fundadoras para las primeras 25 plazas. Después, 54,99€/mes.</p>
+    </div>
+
+    <!-- Columna beneficios -->
+    <div class="integras-mem__card-benefits">
+      <span class="integras-mem__eyebrow integras-mem__eyebrow--gold">Todo lo que incluye</span>
+      <p class="integras-mem__benefits-hint">Toca cada beneficio para ver el detalle.</p>
+
+      <ul class="integras-mem__benefits">
+        <li class="integras-mem__benefit">
+          <span class="integras-mem__benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+          <div class="integras-mem__benefit-body">
+            <div class="integras-mem__benefit-title">Comunidad privada en Skool</div>
+            <div class="integras-mem__benefit-desc">Un espacio cuidado y privado donde compartir avances, dudas y compañía cada día.</div>
+          </div>
+        </li>
+
+        <li class="integras-mem__benefit">
+          <span class="integras-mem__benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5l11 11"/><path d="M21 21l-1-1"/><path d="M3 3l1 1"/><path d="M18 22l4-4"/><path d="M2 6l4-4"/><path d="M3 10l7-7"/><path d="M14 21l7-7"/></svg>
+          </span>
+          <div class="integras-mem__benefit-body">
+            <div class="integras-mem__benefit-title">4 sesiones de entrenamiento al mes con José</div>
+            <div class="integras-mem__benefit-desc">Rutinas en vídeo seguras y progresivas, pensadas para el cuerpo de mujeres +50.</div>
+          </div>
+        </li>
+
+        <li class="integras-mem__benefit">
+          <span class="integras-mem__benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </span>
+          <div class="integras-mem__benefit-body">
+            <div class="integras-mem__benefit-title">Taller mensual en directo con Teresa</div>
+            <div class="integras-mem__benefit-desc">Bienestar emocional y herramientas para esta etapa. Siempre con grabación disponible.</div>
+          </div>
+        </li>
+
+        <li class="integras-mem__benefit">
+          <span class="integras-mem__benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </span>
+          <div class="integras-mem__benefit-body">
+            <div class="integras-mem__benefit-title">Contenido exclusivo</div>
+            <div class="integras-mem__benefit-desc">Rutinas, recursos y lecturas especializadas que se amplían cada mes.</div>
+          </div>
+        </li>
+
+        <li class="integras-mem__benefit">
+          <span class="integras-mem__benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </span>
+          <div class="integras-mem__benefit-body">
+            <div class="integras-mem__benefit-title">Foro Cuerpo y Mente</div>
+            <div class="integras-mem__benefit-desc">Pregunta lo que necesites: Teresa y José responden personalmente.</div>
+          </div>
+        </li>
+
+        <li class="integras-mem__benefit">
+          <span class="integras-mem__benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6-6.3 4.6L8 14 2 9.4h7.6z"/></svg>
+          </span>
+          <div class="integras-mem__benefit-body">
+            <div class="integras-mem__benefit-title">Servicios à la carte</div>
+            <div class="integras-mem__benefit-desc">Consultas individuales y acompañamiento personalizado cuando lo desees.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ¿PARA QUIÉN ES? -->
+  <div class="integras-mem__audience">
+    <div class="integras-mem__audience-head">
+      <span class="integras-mem__eyebrow integras-mem__eyebrow--gold">¿Para quién es ÍNTEGRAS?</span>
+      <h3 class="integras-mem__section-title">Quizá te reconozcas en alguna de ellas</h3>
+    </div>
+    <div class="integras-mem__audience-grid">
+
+      <div class="integras-mem__profile">
+        <div class="integras-mem__profile-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><path d="M12 7.2v6"/><path d="M8 9l4 1 4-1"/><path d="M9.5 21l2.5-6 2.5 6"/></svg>
+        </div>
+        <h4 class="integras-mem__profile-title">La que vuelve a moverse</h4>
+        <p class="integras-mem__profile-text">Quieres retomar el ejercicio, pero necesitas hacerlo de forma segura y guiada, sin lesionarte.</p>
+      </div>
+
+      <div class="integras-mem__profile">
+        <div class="integras-mem__profile-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h4 class="integras-mem__profile-title">La que cuida su mente</h4>
+        <p class="integras-mem__profile-text">Buscas acompañamiento emocional y herramientas para vivir esta etapa con calma y confianza.</p>
+      </div>
+
+      <div class="integras-mem__profile">
+        <div class="integras-mem__profile-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h4 class="integras-mem__profile-title">La que quiere comunidad</h4>
+        <p class="integras-mem__profile-text">No quieres hacerlo sola. Valoras compartir el camino con otras mujeres que te entienden.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TESTIMONIAL ROTATIVO -->
+  <div class="integras-mem__testimonial">
+    <svg class="integras-mem__testimonial-quote" viewBox="0 0 24 24" fill="#E2CFA6"><path d="M7 7h4v4c0 3-1.5 5-4 6v-2c1.3-.7 2-1.8 2-3H7V7zm8 0h4v4c0 3-1.5 5-4 6v-2c1.3-.7 2-1.8 2-3h-2V7z"/></svg>
+    <blockquote class="integras-mem__testimonial-body">
+      <p class="integras-mem__testimonial-text" data-mem-bind="tQuote">Llevaba años sin hacer ejercicio por miedo a lesionarme. Aquí he recuperado fuerza y, sobre todo, confianza en mi cuerpo.</p>
+      <div class="integras-mem__testimonial-name" data-mem-bind="tName">Araceli, 62</div>
+      <div class="integras-mem__testimonial-detail" data-mem-bind="tDetail">Miembra fundadora de Julio</div>
+    </blockquote>
+    <div class="integras-mem__dots">
+      <button class="integras-mem__dot is-active" data-quote="0"></button>
+      <button class="integras-mem__dot" data-quote="1"></button>
+      <button class="integras-mem__dot" data-quote="2"></button>
+    </div>
+  </div>
+
+  <!-- CIERRE -->
+  <div class="integras-mem__closing">
+    <p class="integras-mem__closing-line">No es un programa más. Es una comunidad a la que pertenecer.</p>
+    <button class="integras-mem__cta integras-mem__cta--inline js-open-modal" data-plan="integras">Quiero unirme a ÍNTEGRAS</button>
+    <p class="integras-mem__closing-note">Abre tu plaza de fundadora · Sé de las primeras</p>
+  </div>
+
+  <!-- Servicios a la carta -->
+  <div class="container">
+    <div class="carta-wrap anim">
+      <h3>Servicios individuales · Solo para miembras de ÍNTEGRAS</h3>
+      <p class="carta-nota">Acceso exclusivo para miembras. No disponibles fuera de membresía.</p>
+      <div class="carta-grid">
+        <div class="carta-item">
+          <div>
+            <strong>Sesión de psicología de la salud</strong>
+            <p>Con Teresa. Para momentos de cambio vital.</p>
+          </div>
+          <div class="carta-precios">
+            <span class="carta-precio">70€/sesión</span>
+            <span class="carta-desc-miembra">Precio exclusivo para miembras ÍNTEGRAS</span>
+          </div>
+        </div>
+        <div class="carta-item">
+          <div>
+            <strong>Sesión de entrenamiento 1 a 1</strong>
+            <p>Con Jose. Corrección técnica y evaluación directa.</p>
+          </div>
+          <div class="carta-precios">
+            <span class="carta-precio">50€/sesión</span>
+            <span class="carta-desc-miembra">Precio exclusivo para miembras ÍNTEGRAS</span>
+          </div>
+        </div>
+        <div class="carta-item">
+          <div>
+            <strong>Programación personalizada</strong>
+            <p>Para gym o casa. Plan detallado y ajustado a ti.</p>
+          </div>
+          <div class="carta-precios">
+            <span class="carta-precio">40€/mes</span>
+            <span class="carta-desc-miembra">Precio exclusivo para miembras ÍNTEGRAS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 
@@ -834,5 +827,6 @@
 
 
 <script src="./js/script.js"></script>
+<script src="./js/membership.js"></script>
 </body>
 </html>
